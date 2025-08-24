@@ -1,6 +1,201 @@
 ## Inspiration For the Project
 [foojay's article on DDD in java](https://foojay.io/)
 
+## System Architecture Overview
+
+```mermaid
+graph TB
+    %% External Layer
+    Client[Client Applications]
+    
+    %% Application Layer
+    subgraph "Application Layer"
+        FC[FlightController]
+        GEH[GlobalExceptionHandler]
+        DI[DataInitializer]
+    end
+    
+    %% Domain Layer
+    subgraph "Domain Layer"
+        subgraph "Domain Services"
+            FS[FlightService]
+        end
+        
+        subgraph "Domain Entities"
+            F[Flight]
+            P[Passenger]
+        end
+        
+        subgraph "Value Objects"
+            SA[SeatAssignment]
+        end
+        
+        subgraph "Factories"
+            FF[FlightFactory]
+        end
+        
+        subgraph "Domain Events"
+            DE[Domain Events]
+        end
+    end
+    
+    %% Infrastructure Layer
+    subgraph "Infrastructure Layer"
+        subgraph "Repositories"
+            FR[FlightRepository]
+            PR[PassengerRepository]
+        end
+        
+        subgraph "Database"
+            MongoDB[(MongoDB)]
+        end
+    end
+    
+    %% Application Support
+    subgraph "Application Support"
+        subgraph "DTOs"
+            FReq[FlightRequest]
+            PReq[PassengerRequest]
+        end
+    end
+    
+    %% Connections
+    Client --> FC
+    FC --> FS
+    FC --> FF
+    FC --> FR
+    FC --> FReq
+    FC --> PReq
+    
+    FS --> FR
+    FS --> PR
+    FS --> F
+    FS --> P
+    
+    FF --> F
+    
+    F --> P
+    F --> SA
+    F --> DE
+    P --> SA
+    
+    FR --> MongoDB
+    PR --> MongoDB
+    
+    FC --> GEH
+    DI --> FR
+    DI --> FF
+    
+    %% Styling
+    classDef domainEntity fill:#e1f5fe
+    classDef domainService fill:#f3e5f5
+    classDef valueObject fill:#e8f5e8
+    classDef repository fill:#fff3e0
+    classDef controller fill:#fce4ec
+    classDef dto fill:#f1f8e9
+    
+    class F,P domainEntity
+    class FS domainService
+    class SA valueObject
+    class FR,PR repository
+    class FC controller
+    class FReq,PReq dto
+```
+
+## Component Interaction Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant FlightController
+    participant FlightService
+    participant FlightFactory
+    participant FlightRepository
+    participant Flight
+    participant Passenger
+    participant MongoDB
+    
+    %% Create Flight Flow
+    Client->>FlightController: POST /api/flights
+    FlightController->>FlightFactory: createFlight()
+    FlightFactory->>Flight: new Flight()
+    Flight-->>FlightFactory: flight instance
+    FlightFactory-->>FlightController: flight
+    FlightController->>FlightRepository: save(flight)
+    FlightRepository->>MongoDB: persist flight
+    MongoDB-->>FlightRepository: saved flight
+    FlightRepository-->>FlightController: saved flight
+    FlightController-->>Client: HTTP 201 Created
+    
+    %% Add Passenger Flow
+    Client->>FlightController: POST /api/flights/{flightNumber}/passengers
+    FlightController->>FlightService: addPassengerToFlight()
+    FlightService->>FlightRepository: findByFlightNumber()
+    FlightRepository->>MongoDB: query flight
+    MongoDB-->>FlightRepository: flight data
+    FlightRepository-->>FlightService: flight
+    FlightService->>Flight: addPassenger()
+    Flight->>Flight: validate seat availability
+    Flight-->>FlightService: passenger added
+    FlightService->>FlightRepository: save(flight)
+    FlightRepository->>MongoDB: update flight
+    FlightService-->>FlightController: success
+    FlightController-->>Client: HTTP 200 OK
+```
+
+## Domain Model Relationships
+
+```mermaid
+erDiagram
+    Flight ||--o{ Passenger : contains
+    Passenger ||--|| SeatAssignment : has
+    
+    Flight {
+        string id PK
+        string flightNumber UK
+        string origin
+        string destination
+        datetime scheduledDeparture
+        datetime scheduledArrival
+        datetime createdAt
+        datetime lastModifiedAt
+    }
+    
+    Passenger {
+        string id PK
+        string name
+        datetime createdAt
+        datetime lastModifiedAt
+    }
+    
+    SeatAssignment {
+        string seatNumber
+        string seatClass
+    }
+```
+
+## DDD Layers and Responsibilities
+
+### 1. **Domain Layer** (Core Business Logic)
+- **Entities**: `Flight`, `Passenger` - Rich domain objects with business logic
+- **Value Objects**: `SeatAssignment` - Immutable objects representing concepts
+- **Domain Services**: `FlightService` - Complex business operations spanning multiple entities
+- **Factories**: `FlightFactory` - Object creation with business rules
+- **Domain Events**: Built into Flight entity for integration
+
+### 2. **Application Layer** (Orchestration)
+- **Controllers**: `FlightController` - REST API endpoints and request handling
+- **DTOs**: `FlightRequest`, `PassengerRequest` - Data transfer objects
+- **Exception Handling**: `GlobalExceptionHandler` - Centralized error handling
+
+### 3. **Infrastructure Layer** (Technical Concerns)
+- **Repositories**: `FlightRepository`, `PassengerRepository` - Data persistence abstraction
+- **Database**: MongoDB - Data storage
+- **Configuration**: `DataInitializer` - Application setup
+
+
+
+
 ## agrregates and entities
 - entity: `Flight` - represents a scheduled flight
 - entity: `Passenger` -  represents a traveler
@@ -22,6 +217,8 @@
 - The separation of entities and value objects helps maintain clarity. 
 - Entities have identity (`Flight`, `Passenger`), while value objects describe or 
 - detail entities without unique identities (`SeatAssignment`).
+
+![./images/entities.png](./images/entities.png)
 
 ## contexts and modularization
 -  divide the application into bounded contexts
