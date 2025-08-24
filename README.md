@@ -1,5 +1,6 @@
-## Credit
-[foojay](https://foojay.io/today/domain-driven-design-in-java-a-practical-guide/)
+## Inspiration For the Project
+[foojay's article on DDD in java](https://foojay.io/)
+
 ## agrregates and entities
 - entity: `Flight` - represents a scheduled flight
 - entity: `Passenger` -  represents a traveler
@@ -49,3 +50,7 @@
 - a simple REST controller integrated with your services, 
 - exposing the core functionality to clients
 - The API exposes aggregate-root operations and domain behavior aligned with business processes.
+- [./src/main/java/com/example/airpot/controller](./src/main/java/com/example/airpot/controller)
+
+## Testing and evolving the model
+- write Junit tests for core scenarios, like flight creation, adding passengers, etc.
