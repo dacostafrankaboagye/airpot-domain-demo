@@ -36,9 +36,7 @@ public class Flight {
         events.clear();
     }
 
-    // Business method to add passenger
     public void addPassenger(Passenger passenger){
-        // e.g. validate seat availability before adding
         this.passengers.add(passenger);
     }
 

@@ -30,8 +30,12 @@
 
 
 ## Repositories, domain services, and factories
-- Repositories
+- `Repositories`
   - domain model with databases or external systems.
   - `FlightRepository`, `PassengerRepository`
   - Repositories expose aggregate roots and entities for retrieval and persistence, 
   - without exposing database details to domain logic.
+- `Domain services`
+  - Domain services encapsulate business logic that involves multiple domain objects or 
+  - doesn’t naturally fit in an entity or value object.
+  - e.g.  `FlightService` that manages passenger assignments to flights ensuring no double seat bookings
