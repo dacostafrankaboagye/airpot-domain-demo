@@ -1,5 +1,5 @@
 ## Credit
-![foojay](https://foojay.io/today/domain-driven-design-in-java-a-practical-guide/)
+[foojay](https://foojay.io/today/domain-driven-design-in-java-a-practical-guide/)
 ## agrregates and entities
 - entity: `Flight` - represents a scheduled flight
 - entity: `Passenger` -  represents a traveler
