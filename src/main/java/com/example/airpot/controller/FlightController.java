@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing flight operations.
@@ -38,7 +39,7 @@ public class FlightController {
      * @return ResponseEntity containing the created flight with HTTP 201 status
      */
     @PostMapping
-    public ResponseEntity<Flight> createFlight(@Valid @RequestBody FlightRequest flightRequest){
+    public ResponseEntity<?> createFlight(@Valid @RequestBody FlightRequest flightRequest){
 
         Flight flight = flightFactory.createFlight(
                 flightRequest.getFlightNumber(),
@@ -47,6 +48,12 @@ public class FlightController {
                 flightRequest.getScheduledDeparture(),
                 flightRequest.getScheduledArrival()
         );
+
+        // check if a flight exists
+        Optional<Flight> existingFlight = flightRepository.findByFlightNumber(flight.getFlightNumber());
+        if(existingFlight.isPresent()){
+            throw new RuntimeException("Flight Already exists");
+        }
 
         Flight savedFlight = flightRepository.save(flight);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedFlight);
@@ -163,7 +170,7 @@ public class FlightController {
     @DeleteMapping("/{flightNumber}")
     public ResponseEntity<String> deleteFlight(@PathVariable String flightNumber) {
         if (flightService.flightExists(flightNumber)) {
-            flightRepository.deleteById(flightNumber);
+            var id = flightRepository.deleteFlightByFlightNumber(flightNumber);
             return ResponseEntity.ok("Flight deleted successfully");
         } else {
             return ResponseEntity.notFound().build();

@@ -21,6 +21,9 @@ public interface FlightRepository extends MongoRepository<Flight, String> {
      * @return an Optional containing the flight if found, empty otherwise
      */
     Optional<Flight> findByFlightNumber(String flightNumber);
+
+    Long deleteFlightByFlightNumber(String flightNumber);
+
     /**
      * Finds all flights departing from a specific origin.
      * 

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "68ab22d149f5f65502a29cc4",
+    "flightNumber": "UA101",
+    "origin": "JFK",
+    "destination": "LAX",
+    "scheduledDeparture": "2025-08-24T16:33:52.977",
+    "scheduledArrival": "2025-08-24T20:33:52.977",
+    "passengers": [
+      {
+        "id": "68ab22d149f5f65502a29cbe",
+        "name": "John Doe",
+        "seatAssignment": {
+          "seatNumber": "12A",
+          "seatClass": "Economy",
+          "economy": true,
+          "business": false,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:33:53.008",
+        "lastModifiedAt": "2025-08-24T14:33:53.008"
+      },
+      {
+        "id": "68ab22d149f5f65502a29cbf",
+        "name": "Jane Smith",
+        "seatAssignment": {
+          "seatNumber": "12B",
+          "seatClass": "Economy",
+          "economy": true,
+          "business": false,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:33:53.017",
+        "lastModifiedAt": "2025-08-24T14:33:53.017"
+      }
+    ],
+    "events": [],
+    "createdAt": "2025-08-24T14:33:53.075",
+    "lastModifiedAt": "2025-08-24T14:33:53.075",
+    "passengerCount": 2
+  },
+  {
+    "id": "68ab22d149f5f65502a29cc5",
+    "flightNumber": "UA202",
+    "origin": "LAX",
+    "destination": "JFK",
+    "scheduledDeparture": "2025-08-24T18:33:52.977",
+    "scheduledArrival": "2025-08-24T22:33:52.977",
+    "passengers": [
+      {
+        "id": "68ab22d149f5f65502a29cc0",
+        "name": "Alice Johnson",
+        "seatAssignment": {
+          "seatNumber": "15A",
+          "seatClass": "Business",
+          "economy": false,
+          "business": true,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:33:53.017",
+        "lastModifiedAt": "2025-08-24T14:33:53.017"
+      },
+      {
+        "id": "68ab22d149f5f65502a29cc1",
+        "name": "Bob Brown",
+        "seatAssignment": {
+          "seatNumber": "15B",
+          "seatClass": "Business",
+          "economy": false,
+          "business": true,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:33:53.018",
+        "lastModifiedAt": "2025-08-24T14:33:53.018"
+      }
+    ],
+    "events": [],
+    "createdAt": "2025-08-24T14:33:53.082",
+    "lastModifiedAt": "2025-08-24T14:33:53.082",
+    "passengerCount": 2
+  },
+  {
+    "id": "68ab22d149f5f65502a29cc6",
+    "flightNumber": "AA303",
+    "origin": "ORD",
+    "destination": "MIA",
+    "scheduledDeparture": "2025-08-24T20:33:52.977",
+    "scheduledArrival": "2025-08-25T00:33:52.977",
+    "passengers": [
+      {
+        "id": "68ab22d149f5f65502a29cc2",
+        "name": "Charlie Davis",
+        "seatAssignment": {
+          "seatNumber": "18A",
+          "seatClass": "First Class",
+          "economy": false,
+          "business": false,
+          "firstClass": true
+        },
+        "createdAt": "2025-08-24T14:33:53.018",
+        "lastModifiedAt": "2025-08-24T14:33:53.018"
+      },
+      {
+        "id": "68ab22d149f5f65502a29cc3",
+        "name": "Diana White",
+        "seatAssignment": {
+          "seatNumber": "18B",
+          "seatClass": "First Class",
+          "economy": false,
+          "business": false,
+          "firstClass": true
+        },
+        "createdAt": "2025-08-24T14:33:53.019",
+        "lastModifiedAt": "2025-08-24T14:33:53.019"
+      }
+    ],
+    "events": [],
+    "createdAt": "2025-08-24T14:33:53.083",
+    "lastModifiedAt": "2025-08-24T14:33:53.083",
+    "passengerCount": 2
+  }
+]

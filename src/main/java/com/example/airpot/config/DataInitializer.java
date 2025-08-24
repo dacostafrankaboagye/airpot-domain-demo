@@ -5,10 +5,12 @@ import com.example.airpot.domain.Passenger;
 import com.example.airpot.domain.SeatAssignment;
 
 import com.example.airpot.repository.FlightRepository;
+import com.example.airpot.repository.PassengerRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.boot.CommandLineRunner;
 
@@ -28,6 +30,8 @@ public class DataInitializer implements CommandLineRunner{
 
     private static final Logger log = LoggerFactory.getLogger(DataInitializer.class);
     private final FlightRepository flightRepository;
+    private final PassengerRepository passengerRepository;
+    private final MongoTemplate mongoTemplate;
 
     /**
      * Executes on application startup to initialize sample data if the database is empty.
@@ -37,11 +41,17 @@ public class DataInitializer implements CommandLineRunner{
      */
     @Override
     public void run(String... args) throws Exception{
-        if(flightRepository.count() == 0){
+        if (mongoTemplate.collectionExists("flights")) {
+            mongoTemplate.dropCollection("flights");
+        }
+        if (mongoTemplate.collectionExists("passengers")) {
+            mongoTemplate.dropCollection("passengers");
+        }
+
             log.info("Initializing data...");
             initializeSampleData();
             log.info("Sample data initialized successfully");
-        }
+
     }
 
     /**
@@ -49,6 +59,10 @@ public class DataInitializer implements CommandLineRunner{
      * Initializes three sample flights with different routes and passenger configurations.
      */
     private void initializeSampleData() {
+
+
+
+
         // create sample flights
         LocalDateTime now = LocalDateTime.now();
 
@@ -117,6 +131,7 @@ public class DataInitializer implements CommandLineRunner{
                 )
                 .build();
 
+        passengerRepository.saveAll(List.of(johnDoe, janeSmith, aliceJohnson, bobBrown, charlieDavis, dianaWhite));
         flightRepository.saveAll(List.of(flight1, flight2, flight3));
         log.info("Created {} sample flights", flightRepository.count());
 

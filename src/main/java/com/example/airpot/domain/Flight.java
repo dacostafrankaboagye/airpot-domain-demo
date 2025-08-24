@@ -37,13 +37,18 @@ import java.util.Objects;
 public class Flight {
 
     /**
-     * The unique flight number identifier.
+     * Technical identifier used by MongoDB.
+     * Flight number remains a unique business key but is not the primary @Id,
+     * so that @CreatedDate/@LastModifiedDate auditing works correctly and
+     * Mongo can manage persistence independently of domain keys.
      */
     @Id
+    private String id; // Mongo-generated ObjectId - just so that the createdAt will not be null
+
     @NotBlank(message = "Flight number is required")
     @Size(min = 2, max = 10, message = "Flight number must be between 2 and 10 characters")
-    @Indexed(unique = true)
     @EqualsAndHashCode.Include
+    @Indexed
     private String flightNumber;
 
     /**

@@ -44,6 +44,8 @@ public class FlightFactory {
                 .scheduledArrival(scheduledArrival)
                 .build();
 
+        // flight.validateFlightTimes();
+
     }
 
     /**

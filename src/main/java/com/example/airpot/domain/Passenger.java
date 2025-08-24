@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -14,9 +15,7 @@ import java.util.Objects;
 /**
  * Domain entity representing a passenger in the airport system.
  * Contains passenger information including name and seat assignment.
- * 
- * @author Generated
- * @version 1.0
+ *
  */
 @Getter
 @Setter
@@ -25,6 +24,7 @@ import java.util.Objects;
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@Document(collection = "passengers")
 public class Passenger {
 
     /**

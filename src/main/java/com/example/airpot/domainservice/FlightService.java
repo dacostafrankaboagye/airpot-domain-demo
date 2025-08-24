@@ -3,6 +3,7 @@ package com.example.airpot.domainservice;
 import com.example.airpot.domain.Flight;
 import com.example.airpot.domain.Passenger;
 import com.example.airpot.repository.FlightRepository;
+import com.example.airpot.repository.PassengerRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +30,7 @@ import java.util.Objects;
 public class FlightService {
 
     private final FlightRepository flightRepository;
+    private final PassengerRepository passengerRepository;
 
     /**
      * Adds a passenger to a specific flight.
@@ -53,6 +55,7 @@ public class FlightService {
                 .orElseThrow(() -> new IllegalArgumentException("Flight not found: " + flightNumber));
 
         flight.addPassenger(passenger);
+        passengerRepository.save(passenger);
         flightRepository.save(flight);
         
         log.info("Successfully added passenger {} to flight {}", passenger.getName(), flightNumber);

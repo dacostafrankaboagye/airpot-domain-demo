@@ -71,6 +71,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
+
+
+
     /**
      * Handles all other unhandled exceptions as a fallback.
      *
@@ -82,8 +85,8 @@ public class GlobalExceptionHandler {
         log.error("An unexpected error occurred: {}", ex.getMessage());
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .error("Internal Server Error")
-                .message("An unexpected error occurred. Please try again later.")
+                .error("An unexpected error occurred")
+                .message( ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
 

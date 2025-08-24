@@ -1,0 +1,42 @@
+[
+  {
+    "id": "68ab27dc2fe70854321d7b09",
+    "flightNumber": "UA101",
+    "origin": "JFK",
+    "destination": "LAX",
+    "scheduledDeparture": "2025-08-24T16:55:24.271",
+    "scheduledArrival": "2025-08-24T20:55:24.271",
+    "passengers": [
+      {
+        "id": "68ab27dc2fe70854321d7b03",
+        "name": "John Doe",
+        "seatAssignment": {
+          "seatNumber": "12A",
+          "seatClass": "Economy",
+          "business": false,
+          "economy": true,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:55:24.298",
+        "lastModifiedAt": "2025-08-24T14:55:24.298"
+      },
+      {
+        "id": "68ab27dc2fe70854321d7b04",
+        "name": "Jane Smith",
+        "seatAssignment": {
+          "seatNumber": "12B",
+          "seatClass": "Economy",
+          "business": false,
+          "economy": true,
+          "firstClass": false
+        },
+        "createdAt": "2025-08-24T14:55:24.306",
+        "lastModifiedAt": "2025-08-24T14:55:24.306"
+      }
+    ],
+    "events": [],
+    "createdAt": "2025-08-24T14:55:24.345",
+    "lastModifiedAt": "2025-08-24T14:55:24.345",
+    "passengerCount": 2
+  }
+]

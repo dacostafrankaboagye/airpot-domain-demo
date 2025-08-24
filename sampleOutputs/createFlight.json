@@ -1,0 +1,13 @@
+{
+  "id": "68ab28582fe70854321d7b0d",
+  "flightNumber": "MX90",
+  "origin": "SSU",
+  "destination": "PPM",
+  "scheduledDeparture": "2025-12-25T10:00:00",
+  "scheduledArrival": "2025-12-25T13:00:00",
+  "passengers": [],
+  "events": [],
+  "createdAt": "2025-08-24T14:57:28.3796796",
+  "lastModifiedAt": "2025-08-24T14:57:28.3796796",
+  "passengerCount": 0
+}
