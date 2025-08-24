@@ -35,7 +35,11 @@
   - `FlightRepository`, `PassengerRepository`
   - Repositories expose aggregate roots and entities for retrieval and persistence, 
   - without exposing database details to domain logic.
+  - [./src/main/java/com/example/airpot/repository](./src/main/java/com/example/airpot/repository)
 - `Domain services`
   - Domain services encapsulate business logic that involves multiple domain objects or 
   - doesn’t naturally fit in an entity or value object.
   - e.g.  `FlightService` that manages passenger assignments to flights ensuring no double seat bookings
+  - [./src/main/java/com/example/airpot/domainservice](./src/main/java/com/example/airpot/domainservice)
+- `Factories`
+  - Factories create complex aggregate instances while encapsulating creation logic.
