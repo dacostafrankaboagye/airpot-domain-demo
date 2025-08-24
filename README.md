@@ -43,3 +43,9 @@
   - [./src/main/java/com/example/airpot/domainservice](./src/main/java/com/example/airpot/domainservice)
 - `Factories`
   - Factories create complex aggregate instances while encapsulating creation logic.
+  - [./src/main/java/com/example/airpot/factory](./src/main/java/com/example/airpot/factory)
+
+## Application layer and integration
+- a simple REST controller integrated with your services, 
+- exposing the core functionality to clients
+- The API exposes aggregate-root operations and domain behavior aligned with business processes.
