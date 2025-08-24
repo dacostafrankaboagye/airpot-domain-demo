@@ -28,5 +28,10 @@
   - Passenger services: Manages check-in, boarding, and seat assignments 
   - Ground services: Could involve baggage handling and gate assignments, but omitted here for simplicity
 
--  we will map these contexts to separate packages/modules 
-  - `flightops`, `passengerservices`
+
+## Repositories, domain services, and factories
+- Repositories
+  - domain model with databases or external systems.
+  - `FlightRepository`, `PassengerRepository`
+  - Repositories expose aggregate roots and entities for retrieval and persistence, 
+  - without exposing database details to domain logic.
