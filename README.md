@@ -21,3 +21,12 @@
 - The separation of entities and value objects helps maintain clarity. 
 - Entities have identity (`Flight`, `Passenger`), while value objects describe or 
 - detail entities without unique identities (`SeatAssignment`).
+
+## contexts and modularization
+-  divide the application into bounded contexts
+  - Flight operations: Handles flight scheduling, passenger management, and communications 
+  - Passenger services: Manages check-in, boarding, and seat assignments 
+  - Ground services: Could involve baggage handling and gate assignments, but omitted here for simplicity
+
+-  we will map these contexts to separate packages/modules 
+  - `flightops`, `passengerservices`
