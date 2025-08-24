@@ -196,7 +196,7 @@ erDiagram
 
 
 
-## agrregates and entities
+## agregates and entities
 - entity: `Flight` - represents a scheduled flight
 - entity: `Passenger` -  represents a traveler
 - value object: `SeatAssignment`- represents descriptive attributes without identity. 
@@ -218,7 +218,7 @@ erDiagram
 - Entities have identity (`Flight`, `Passenger`), while value objects describe or 
 - detail entities without unique identities (`SeatAssignment`).
 
-![./images/entities.png](./images/entities.png)
+![./images/entities.png](images/entities.png)
 
 ## contexts and modularization
 -  divide the application into bounded contexts
